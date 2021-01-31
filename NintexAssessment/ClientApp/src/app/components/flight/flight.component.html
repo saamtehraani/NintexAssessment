@@ -1,0 +1,27 @@
+<div class="list-group" *ngIf="flights!=undefined && flights.length > 0">
+    <ng-template ngFor let-flight [ngForOf]="flights | slice: (page-1) * pageSize : page * pageSize" let-i="index">
+        <a (click)="flightChanged(flight)" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center mt-4">
+            <div class="flex-column">
+                <h3>{{flight.airlineName}}</h3>
+
+                <p><small>Inbound Flights Duration: <strong>{{flight.inboundFlightsDuration}}</strong></small></p>
+                <p><small>Outbound Flights Duration: <strong>{{flight.outboundFlightsDuration}}</strong></small></p>
+                <p *ngIf="flight.itineraryId!=''">{{flight.itineraryId}}</p>
+
+                <p>
+                    <span class="badge badge-pill" [ngClass]="{'badge-info': flight.stops <= 1, 'badge-primary': flight.stops <= 2, 'badge-danger': flight.stops >= 3 }"> {{flight.stops}} Stops</span>
+                </p>
+                <h5><i>{{flight.totalAmount | currency}}</i></h5>
+            </div>
+            <div class="image-parent">
+                <img [src]="flight.airlineLogoAddress" class="img-fluid" alt="quixote" width="60">
+            </div>
+        </a>
+    </ng-template>
+
+    <ngb-pagination class="d-flex justify-content-center mt-5" [(page)]="page"
+                    [pageSize]="pageSize"
+                    [collectionSize]="flights.length"></ngb-pagination>
+</div>
+
+

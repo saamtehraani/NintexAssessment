@@ -1,0 +1,6 @@
+{
+    "info": {
+        "DepartureDirportCode": "Departure airport code",
+        "ArrivalAirportCode": "Arrival airport code"
+    }
+}

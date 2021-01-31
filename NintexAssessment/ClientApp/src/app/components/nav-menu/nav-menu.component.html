@@ -1,0 +1,27 @@
+<header>
+    <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+        <div class="container">
+            <a class="navbar-brand" [routerLink]="['/']">NintexAssessment</a>
+            <button class="navbar-toggler"
+                    type="button"
+                    data-toggle="collapse"
+                    data-target=".navbar-collapse"
+                    aria-label="Toggle navigation"
+                    [attr.aria-expanded]="isExpanded"
+                    (click)="toggle()">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse" [ngClass]="{ show: isExpanded }">
+                <a class="ml-1" (click)="languageChange('ge')"><img src="./assets/img/Germany.png" width="30" /></a>
+                <a (click)="languageChange('en')"><img src="./assets/img/UnitedKingdom.png" width="35" /></a>
+                <ul class="navbar-nav flex-grow">
+                    <li class="nav-item"
+                        [routerLinkActive]="['link-active']"
+                        [routerLinkActiveOptions]="{ exact: true }">
+                        <a class="nav-link text-dark" [routerLink]="['/']">Home</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</header>

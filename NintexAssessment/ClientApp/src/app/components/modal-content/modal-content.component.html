@@ -1,0 +1,23 @@
+<div class="modal-header">
+    <h4 class="modal-title"><img [src]="flight.airlineLogoAddress" class="img-fluid" alt="quixote" width="60"> {{flight.airlineName}}</h4>
+    <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+<div class="modal-body">
+    <p><small>Inbound Flights Duration: <strong>{{flight.inboundFlightsDuration}}</strong></small></p>
+    <p><small>Outbound Flights Duration: <strong>{{flight.outboundFlightsDuration}}</strong></small></p>
+    <p *ngIf="flight.itineraryId!=''">{{flight.itineraryId}}</p>
+
+    <p>
+        <span class="badge" [ngClass]="{'badge-info': flight.stops <= 1, 'badge-primary': flight.stops <= 2, 'badge-danger': flight.stops >= 3 }">{{flight.stops}} Stops</span>
+    </p>
+    <h5><i>{{flight.totalAmount | currency}}</i></h5>
+
+    <div class="image-parent">
+        
+    </div>
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-outline-dark" (click)="activeModal.close('Close click')">Close</button>
+</div>

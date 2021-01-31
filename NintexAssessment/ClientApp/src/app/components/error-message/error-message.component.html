@@ -1,0 +1,5 @@
+<div *ngIf="showErrors" class="alert alert-danger">
+    <div *ngFor="let e of errors">
+        <label class="error">{{e}}</label>
+    </div>
+</div>

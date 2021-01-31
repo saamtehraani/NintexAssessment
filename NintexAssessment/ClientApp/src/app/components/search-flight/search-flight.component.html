@@ -1,0 +1,23 @@
+<div class="row" *ngIf="(flights!=undefined && flights.length > 0) || submited">
+    <div class="col-md-6">
+        <div class="input-group">
+            <div class="input-group-prepend">
+                <span class="input-group-text"><i class="fas fa-search"></i></span>
+            </div>
+            <input type="text" class="form-control" placeholder="Filter" aria-label="Filter" (keyup)="filter($event.target.value)">
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="d-inline-block float-right" ngbDropdown #myDrop="ngbDropdown">
+            <button class="btn btn-outline-primary mr-2" id="sortDropdown" ngbDropdownAnchor (focus)="myDrop.open()">Sort by: {{sort}}</button>
+            <div ngbDropdownMenu aria-labelledby="sortDropdown">
+                <button ngbDropdownItem (click)="sort = 'Name A-Z'; sortAZ()">Name A-Z</button>
+                <button ngbDropdownItem (click)="sort = 'Name Z-A'; sortZA()">Name Z-A</button>
+                <button ngbDropdownItem (click)="sort = 'Price - high to low'; sortPriceHL()">Price - high to low</button>
+                <button ngbDropdownItem (click)="sort = 'Price - low to high'; sortPriceLH()">Price - low to high</button>
+                <button ngbDropdownItem (click)="sort = 'Stop - high to low'; sortStopHL()">Stop - high to low</button>
+                <button ngbDropdownItem (click)="sort = 'Stop - low to high'; sortStopLH()">Stop - low to high</button>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,46 @@
+/* You can add global styles to this file, and also import other style files */
+
+/* Provide sufficient contrast against white background */
+
+a {
+    color: #0366d6;
+}
+
+code {
+    color: #e01a76;
+}
+
+.btn-primary {
+    color: #fff;
+    background-color: #1b6ec2;
+    border-color: #1861ac;
+}
+
+html, body {
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+.list-group-item {
+    border-top-left-radius: .25rem;
+    border-top-right-radius: .25rem;
+}
+
+    .list-group-item + .list-group-item {
+        border-top-width: 1px;
+    }
+
+.loader {
+    position: absolute;
+    z-index: 1;
+    left: 50%;
+    top: 50%;
+}
+
+a:hover {
+    cursor: pointer;
+}

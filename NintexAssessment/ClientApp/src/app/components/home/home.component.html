@@ -1,0 +1,78 @@
+<form (submit)="search()" [formGroup]="flightSearchFormGroup">
+    <div class="row">
+        <div class="col-sm">
+            <label for="departureAirportCode" class="form-label" translate>info.DepartureDirportCode</label>
+            <input formControlName="departureAirportCode" maxlength="3" type="text" class="form-control" id="departureAirportCode" placeholder="Ex. MEL" required>
+        </div>
+        <div class="col-sm">
+            <label for="arrivalAirportCode" class="form-label" translate>info.ArrivalAirportCode</label>
+            <input formControlName="arrivalAirportCode" maxlength="3" type="text" class="form-control" id="arrivalAirportCode" required>
+        </div>
+        <div class="col-sm">
+            <label for="exampleFormControlInput1" class="form-label">Departure date</label>
+            <div class="form-group">
+                <div class="input-group">
+                    <input formControlName="departureDate" class="form-control" placeholder="yyyy-mm-dd" name="dp" (click)="dDeparture.toggle()" ngbDatepicker #dDeparture="ngbDatepicker" required readonly>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm">
+            <label for="exampleFormControlInput1" class="form-label">Return date</label>
+            <div class="form-group">
+                <div class="input-group">
+                    <input formControlName="returnDate" class="form-control" placeholder="yyyy-mm-dd" (click)="dReturn.toggle()" ngbDatepicker #dReturn="ngbDatepicker" required readonly>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm">
+            <label for="exampleFormControlInput1" class="form-label">&nbsp;</label>
+            <div class="form-group">
+                <div class="input-group">
+                    <button class="btn btn-primary" type="submit">Search</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <error-message [errors]="errors"></error-message>
+
+    <div *ngIf="departureAirportCode.invalid && (departureAirportCode.dirty || departureAirportCode.touched)"
+         class="alert alert-danger">
+
+        <div *ngIf="departureAirportCode.errors.required">
+            Departure airport code is required.
+        </div>
+        <div *ngIf="departureAirportCode.errors.minlength">
+            Departure airport code must be at least 3 characters long.
+        </div>
+        <div *ngIf="departureAirportCode.errors.maxlength">
+            Departure airport code must be maximum 3 characters long.
+        </div>
+    </div>
+    <div *ngIf="arrivalAirportCode.invalid && (arrivalAirportCode.dirty || arrivalAirportCode.touched)"
+         class="alert alert-danger">
+
+        <div *ngIf="arrivalAirportCode.errors.required">
+            Arrival airport code is required.
+        </div>
+        <div *ngIf="arrivalAirportCode.errors.minlength">
+            Arrival airport code must be at least 3 characters long.
+        </div>
+        <div *ngIf="arrivalAirportCode.errors.maxlength">
+            Arrival airport code must be maximum 3 characters long.
+        </div>
+    </div>
+
+</form>
+
+<div class="row top10" *ngIf="submitAttempt">
+    <img class="loader" src="./assets/img/loader.gif" />
+</div>
+
+<app-search-flight (flightFiltered)="onFlightFiltered($event)"
+                   [flights]="flights"
+                   [originalFlights]="originalFlights"
+                   [submited]="submited">
+</app-search-flight>
+
+<app-flight (flightSelected)="onFlightSelected($event)" [flights]="flights"></app-flight>
